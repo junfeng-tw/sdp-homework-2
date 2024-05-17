@@ -2,8 +2,11 @@ package com.example;
 
 public class BowlingGame {
 
-    private final int [] rolls = new int[21];
+    private static final int MAX_FRAMES = 10;
+    private static final int MAX_ROLLS = 21;
+    private static final int PINS_PER_STRIKE = 10;
 
+    private final int[] rolls = new int[MAX_ROLLS];
     private int currentRoll = 0;
 
     public void roll(int pins) {
@@ -12,27 +15,39 @@ public class BowlingGame {
 
     public int getScore() {
         int score = 0;
-        int frameIndex = 0;
-        for(int frame = 0; frame < 10; frame++){
-            if(isStrike(frameIndex)){
-                score += 10 + rolls[frameIndex+1]+rolls[frameIndex+2];
-                frameIndex += 1;
-            }else if(isSpare(frameIndex)){
-                score += 10 + rolls[frameIndex+2];
-                frameIndex += 2;
+        int rollIndex = 0;
+        for (int frame = 0; frame < MAX_FRAMES; frame++) {
+            if (isStrike(rollIndex)) {
+                score += PINS_PER_STRIKE + strikeBonus(rollIndex);
+                rollIndex += 1;
+            } else if (isSpare(rollIndex)) {
+                score += PINS_PER_STRIKE + spareBonus(rollIndex);
+                rollIndex += 2;
             } else {
-                score += rolls[frameIndex] + rolls[frameIndex+1];
-                frameIndex += 2;
+                score += sumOfBallsInFrame(rollIndex);
+                rollIndex += 2;
             }
         }
         return score;
     }
 
-    private boolean isSpare(int frameIndex) {
-        return rolls[frameIndex] + rolls[frameIndex+1] == 10;
+    private boolean isStrike(int rollIndex) {
+        return rolls[rollIndex] == PINS_PER_STRIKE;
     }
 
-    private boolean isStrike(int frameIndex) {
-        return rolls[frameIndex] == 10;
+    private boolean isSpare(int rollIndex) {
+        return rolls[rollIndex] + rolls[rollIndex + 1] == PINS_PER_STRIKE;
+    }
+
+    private int strikeBonus(int rollIndex) {
+        return rolls[rollIndex + 1] + rolls[rollIndex + 2];
+    }
+
+    private int spareBonus(int rollIndex) {
+        return rolls[rollIndex + 2];
+    }
+
+    private int sumOfBallsInFrame(int rollIndex) {
+        return rolls[rollIndex] + rolls[rollIndex + 1];
     }
 }
