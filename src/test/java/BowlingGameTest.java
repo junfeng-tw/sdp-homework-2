@@ -73,4 +73,16 @@ class BowlingGameTest {
         }
         assertEquals(77, game.getScore());
     }
+
+    @Test
+    void testTenthFrameStrike() {
+        BowlingGame game = new BowlingGame();
+        for (int i = 0; i < 18; i++) {
+            game.roll(0);
+        }
+        game.roll(10); // Strike in the tenth frame
+        game.roll(1);
+        game.roll(1);
+        assertEquals(12, game.getScore());
+    }
 }
