@@ -21,4 +21,16 @@ class BowlingGameTest {
         }
         assertEquals(20, game.getScore());
     }
+
+    @Test
+    void testSingleSpare() {
+        BowlingGame game = new BowlingGame();
+        game.roll(5);
+        game.roll(5); // Spare
+        game.roll(3);
+        for (int i = 0; i < 17; i++) {
+            game.roll(0);
+        }
+        assertEquals(16, game.getScore());
+    }
 }
