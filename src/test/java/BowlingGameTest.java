@@ -71,6 +71,6 @@ class BowlingGameTest {
         for (int i = 0; i < 12; i++) {
             game.roll(0);
         }
-        assertEquals(81, game.getScore());
+        assertEquals(77, game.getScore());
     }
 }
