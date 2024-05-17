@@ -45,4 +45,18 @@ class BowlingGameTest {
         }
         assertEquals(24, game.getScore());
     }
+
+    @Test
+    void testConsecutiveSpares() {
+        BowlingGame game = new BowlingGame();
+        game.roll(5);
+        game.roll(5); // Spare
+        game.roll(5);
+        game.roll(5); // Spare
+        game.roll(3);
+        for (int i = 0; i < 15; i++) {
+            game.roll(0);
+        }
+        assertEquals(31, game.getScore());
+    }
 }
