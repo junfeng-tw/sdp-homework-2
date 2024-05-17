@@ -85,4 +85,50 @@ class BowlingGameTest {
         game.roll(1);
         assertEquals(12, game.getScore());
     }
+
+    @Test
+    void testPerfectGame() {
+        BowlingGame game = new BowlingGame();
+        for (int i = 0; i < 12; i++) {
+            game.roll(10); // All strikes
+            // 1 = 1 + 2 + 3
+            // 2 = 2 + 3 + 4
+            // 3 = 3 + 4 + 5
+            // 4 = 4 + 5 + 6
+            // 5 = 5 + 6 + 7
+            // 6 = 6 + 7 + 8
+            // 7 = 7 + 8 + 9
+            // 8 = 8 + 9 + 10
+            // 9 = 9 + 10+ 11
+            // 10 = 10 + 11 + 12
+            // 4 = 4 + 5 + 6
+            // 4 = 4 + 5 + 6
+            // 4 = 4 + 5 + 6
+            // 4 = 4 + 5 + 6
+        }
+        assertEquals(300, game.getScore());
+    }
+
+    @Test
+    void testMixedGame() {
+        BowlingGame game = new BowlingGame();
+        game.roll(10); // Strike
+        game.roll(7);
+        game.roll(3); // Spare
+        game.roll(9);
+        game.roll(0); // Open frame
+        game.roll(10); // Strike
+        game.roll(0);
+        game.roll(8); // Open frame
+        game.roll(8);
+        game.roll(2); // Spare
+        game.roll(0);
+        game.roll(6); // Open frame
+        game.roll(10); // Strike
+        game.roll(10); // Strike
+        game.roll(10); // Strike
+        game.roll(8);
+        game.roll(1); // End of game
+        assertEquals(167, game.getScore());
+    }
 }
