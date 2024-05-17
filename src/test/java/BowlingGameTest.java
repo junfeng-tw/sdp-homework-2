@@ -33,4 +33,16 @@ class BowlingGameTest {
         }
         assertEquals(16, game.getScore());
     }
+
+    @Test
+    void testSingleStrike() {
+        BowlingGame game = new BowlingGame();
+        game.roll(10); // Strike
+        game.roll(3);
+        game.roll(4);
+        for (int i = 0; i < 16; i++) {
+            game.roll(0);
+        }
+        assertEquals(24, game.getScore());
+    }
 }
