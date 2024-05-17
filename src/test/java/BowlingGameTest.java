@@ -1,4 +1,6 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import com.example.BowlingGame;
 import org.junit.jupiter.api.Test;
 
 class BowlingGameTest {

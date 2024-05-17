@@ -82,14 +82,14 @@ public class BowlingGameTest {
 
     @Test
     public void testAllZeros() {
-        BowlingGame game = new BowlingGame();
+        com.example.BowlingGame game = new com.example.BowlingGame();
         for (int i = 0; i < 20; i++) {
             game.roll(0);
         }
         assertEquals(0, game.getScore());
     }
 }
-public class BowlingGame {
+public class com.example.BowlingGame {
 
    public void roll(int pins) {
       // 暂时不实现具体逻辑
